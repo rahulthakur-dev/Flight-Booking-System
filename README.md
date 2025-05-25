@@ -1,74 +1,62 @@
 ## Flight Booking Backend
 
-This repository is a monorepo showcasing a flight booking backend system built with a microservices architecture. It includes two independent services — `flight-service` and `booking-service` — both following clean code practices and structured using a custom [Node.js Project Template](https://github.com/rahulthakur-dev/nodejs-project-template).
-
----
+This repository contains a flight booking backend system designed with a microservices architecture. It consists of two independent services — `flight-service` and `booking-service` — both built using a clean code structure based on a shared [Node.js Project Template](https://github.com/rahulthakur-dev/nodejs-project-template).
 
 ## Repositories
 
 - [Flight Service](https://github.com/rahulthakur-dev/flight-service)  
-  Handles creation and management of flights, airports, and airline data.  
-  Includes endpoints for managing routes, seat capacity, and scheduling.
+  Responsible for managing flights, airports, and airlines.  
+  Includes endpoints for route management, seat capacity, and schedules.
 
 - [Booking Service](https://github.com/rahulthakur-dev/booking-service)  
-  Manages user bookings, ensures transactional safety during booking, and prevents overbooking.  
-  Implements idempotent operations, locking, and automatic cleanup of stale records.
+  Manages flight bookings, transactional safety, and overbooking prevention.  
+  Implements idempotency keys, locking, and stale record cleanup.
 
 - [Node.js Project Template](https://github.com/rahulthakur-dev/nodejs-project-template)  
-  A reusable, production-ready Node.js boilerplate with a clean folder structure, Sequelize integration, and environment setup.
+  A reusable boilerplate with a modular structure, Sequelize ORM integration, and environment setup.
 
----
+## Technology Stack
 
-## Tech Stack
+- Node.js with Express.js  
+- MySQL database  
+- Sequelize ORM  
+- Modular architecture: Controllers, Services, Repositories, Middleware  
+- Node-Cron for scheduled background tasks  
+- dotenv for environment variable management  
+- Custom logging and error handling
 
-- Backend Framework: Node.js with Express.js  
-- Database: MySQL  
-- ORM: Sequelize  
-- Architecture: Modular with clear separation of concerns — Controllers, Services, Repositories, Middlewares  
-- Job Scheduling: Node-Cron for background tasks like stale booking cleanup  
-- Environment Management: dotenv  
-- Logging & Error Handling: Custom error classes and centralized logging setup
+## Key Features and Concepts
 
----
+**Idempotency**  
+Prevents duplicate booking or charges by using idempotency keys on critical APIs.
 
-## Concepts & Features Implemented
+**ACID Transactions**  
+Ensures atomicity, consistency, isolation, and durability using Sequelize transactions with rollback on failure.
 
-### Idempotency
-Booking API uses idempotency keys to prevent duplicate charges or multiple bookings when the same request is retried.
+**Row-Level Locking**  
+Uses Sequelize’s row locking to prevent race conditions and overbooking during concurrent requests.
 
-### Transaction Management (ACID)
-Atomicity, Consistency, Isolation, and Durability are ensured using Sequelize transactions during booking operations.  
-Database rollbacks and error handling maintain integrity.
+**Cron Jobs**  
+Schedules cleanup of expired or unpaid bookings automatically with node-cron.
 
-### Row-Level Locking
-Utilized Sequelize’s `LOCK.UPDATE` to avoid race conditions and overbooking in concurrent booking scenarios.
+**Clean and Scalable Code**  
+Follows best practices such as single responsibility and clear separation of concerns.  
+Allows independent scalability and maintainability of each microservice.
 
-### Cron Jobs
-Automated deletion of expired or unpaid bookings using scheduled tasks (node-cron).
+**RESTful API Design**  
+Structured routes with input validation, middleware layers, and controller-service separation.
 
-### Clean Code & Scalable Structure
-Inspired by best practices: single responsibility, clear separation between business logic and infrastructure.  
-Each microservice is independently scalable and testable.
+## Testing and Validation
 
-### RESTful APIs
-Well-defined routes with input validation, middleware, and controller-service flow.
+- Input validation through middleware  
+- Sequelize model validation with transaction rollback  
+- Environment-specific configurations for development, testing, and production
 
----
+## Setup and Deployment
 
-## Testing & Validation
-
-- Basic input validation using custom middleware  
-- Sequelize model validation and transaction rollback on failures  
-- Environment-specific configurations
-
----
-
-## Setup & Deployment
-
-Each microservice contains its own `README.md` for setup and deployment instructions. The services can be run individually.
-
----
+Each microservice has its own detailed `README.md` for setup and deployment instructions.  
+The services are designed to run independently.
 
 ## License
 
-This project is open source and free to use under the [MIT License](LICENSE).
+This project is open source and available under the [MIT License](LICENSE).
