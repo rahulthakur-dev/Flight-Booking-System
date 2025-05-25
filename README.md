@@ -27,24 +27,24 @@ This repository contains a flight booking backend system designed with a microse
 
 ## Key Features and Concepts
 
-**Idempotency**  
-Prevents duplicate booking or charges by using idempotency keys on critical APIs.
+- **Idempotency**  
+  Prevents duplicate bookings or charges by using idempotency keys on critical APIs.
 
-**ACID Transactions**  
-Ensures atomicity, consistency, isolation, and durability using Sequelize transactions with rollback on failure.
+- **ACID Transactions**  
+  Ensures atomicity, consistency, isolation, and durability using Sequelize transactions with rollback on failure.
 
-**Row-Level Locking**  
-Uses Sequelize’s row locking to prevent race conditions and overbooking during concurrent requests.
+- **Row-Level Locking**  
+  Uses Sequelize’s row locking to prevent race conditions and overbooking during concurrent requests.
 
-**Cron Jobs**  
-Schedules cleanup of expired or unpaid bookings automatically with node-cron.
+- **Cron Jobs**  
+  Schedules automatic cleanup of expired or unpaid bookings using node-cron.
 
-**Clean and Scalable Code**  
-Follows best practices such as single responsibility and clear separation of concerns.  
-Allows independent scalability and maintainability of each microservice.
+- **Clean and Scalable Code**  
+  Implements single responsibility principle and clear separation of concerns.  
+  Allows independent scalability and maintainability of each microservice.
 
-**RESTful API Design**  
-Structured routes with input validation, middleware layers, and controller-service separation.
+- **RESTful API Design**  
+  Structured routes with input validation, middleware layers, and controller-service separation.
 
 ## Testing and Validation
 
